@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/Client")
+@RequestMapping("/api/Client/")
 @CrossOrigin(origins = "*",methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 
 public class ClientController {
@@ -27,27 +27,27 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
     
-    @GetMapping("/all")
+    @GetMapping("all")
     public List<Client> getAll(){
         return clientService.getAll();
     }
     
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public Optional<Client> getById(@PathVariable("idClient") Integer id){
         return clientService.getById(id);
     } 
     
-    @PostMapping("/save")
+    @PostMapping("save")
     @ResponseStatus(HttpStatus.CREATED)
     public Client save (@RequestBody Client client){
         return clientService.save(client);
     }
-    @PutMapping("/update")
+    @PutMapping("update")
     @ResponseStatus(HttpStatus.CREATED)
     public Client update(@RequestBody Client client) {
         return clientService.update(client);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public boolean delete(@PathVariable ("id") Integer id) {
         return clientService.delete(id);
